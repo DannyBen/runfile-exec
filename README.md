@@ -47,3 +47,11 @@ To change the location, add this at the beginning of your Runfile:
 ```ruby
 RunfileExec.pid_dir = './tmp'
 ```
+
+## Example ##
+
+See the `example` folder for sample usage. To see the output:
+
+	$ cd example
+	$ run         # list commands
+	$ run runbg   # start one of the sample commands

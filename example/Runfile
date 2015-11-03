@@ -4,7 +4,7 @@ include RunfileExec
 # RunfileExec.pid_dir = './tmp'
 
 name    "Debug Runfile"
-summary "Run Exec Dev Tests"
+summary "Runfile Exec Example Usage"
 version "0.1.0"
 
 action :one do
@@ -16,5 +16,5 @@ action :runbg do
 end
 
 action :stop do
-	stop_bg 'hello'
+  stop_bg 'hello'
 end
