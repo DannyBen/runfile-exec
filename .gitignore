@@ -1,0 +1,4 @@
+doc
+gems
+*.gem
+Gemfile.lock

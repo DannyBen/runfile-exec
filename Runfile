@@ -1,0 +1,9 @@
+require "run-gem-dev"
+
+name    "Runfile Exec Gem Utils"
+summary "Utilities for building the Runfile Exec gem"
+version RunfileExec::VERSION
+
+RunGemDev::gem_tasks 'runfile-exec'
+# RunGemDev::minitest_tasks
+# RunGemDev::rdoc_tasks

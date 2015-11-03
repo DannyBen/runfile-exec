@@ -1,0 +1,20 @@
+require_relative "../lib/runfile-exec.rb"
+include RunfileExec
+
+# RunfileExec.pid_dir = './tmp'
+
+name    "Debug Runfile"
+summary "Run Exec Dev Tests"
+version "0.1.0"
+
+action :one do
+  run 'pwd'
+end
+
+action :runbg do
+  run_bg "ls -l", pid: 'hello'
+end
+
+action :stop do
+	stop_bg 'hello'
+end
