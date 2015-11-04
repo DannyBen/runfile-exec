@@ -1,5 +1,4 @@
 require_relative "../lib/runfile-exec.rb"
-include RunfileExec
 
 # RunfileExec.pid_dir = './tmp'
 

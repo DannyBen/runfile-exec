@@ -58,3 +58,5 @@ module RunfileExec
   end
 
 end
+
+include RunfileExec

@@ -15,7 +15,6 @@ Put this in your Runfile
 
 ```ruby
 require "runfile-exec"
-include RunfileExec
 ```
 
 And then you can use any of these commands in your Runfile actions:
