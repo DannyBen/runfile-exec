@@ -6,11 +6,14 @@ name    "Debug Runfile"
 summary "Runfile Exec Example Usage"
 version "0.1.0"
 
+# Will be called before each call to run, run! and run_bg
+# Should return the command, or a modified version of it, or false to abort
 before_run do |command|
   puts "BEFORE #{command}"
   command
 end
 
+# Will be called after each call to run, run! and run_bg
 after_run do |command|
   puts "AFTER #{command}"
 end

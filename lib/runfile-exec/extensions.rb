@@ -4,8 +4,6 @@
 # adds functions for running background tasks with ease.
 
 module RunfileExec
-  @@pid_dir = nil
-
   def self.pid_dir=(dir)
     @@pid_dir = dir
   end
@@ -17,25 +15,25 @@ module RunfileExec
   # Run a command, wait until it is done and continue
   def run(cmd)
     cmd = @before_run_block.call(cmd) if @before_run_block
+    return false unless cmd
     say "!txtgrn!> #{cmd}"
     system cmd
     @after_run_block.call(cmd) if @after_run_block
   end
-  module_function :run
 
   # Run a command, wait until it is done, then exit
   def run!(cmd)
     cmd = @before_run_block.call(cmd) if @before_run_block
+    return false unless cmd
     say "!txtgrn!> #{cmd}"
     exec cmd
-    @after_run_block.call(cmd) if @after_run_block
   end
-  module_function :run!
 
   # Run a command in the background, optionally log to a log file and save
   # the process ID in a pid file
   def run_bg(cmd, pid: nil, log: '/dev/null')
     cmd = @before_run_block.call(cmd) if @before_run_block
+    return false unless cmd
     full_cmd = "exec #{cmd} >#{log} 2>&1"
     say "!txtgrn!> #{full_cmd}"
     process = IO.popen "exec #{cmd} >#{log} 2>&1"

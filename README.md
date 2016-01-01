@@ -27,15 +27,29 @@ run 'pwd'
 run! 'pwd'
 
 # Run a command in the background
-run_bg 'some-long-running --daemon'
+run_bg 'some/long-running/process'
 
 # Run a command in the background, log to a log file and save the process 
 # ID in a pid file for later reference
-run_bg 'some-long-running --daemon', log: 'my.log', pid: 'daemon'
+run_bg 'some/long-running/process', log: 'my.log', pid: 'daemon'
 
 # Stop a command started with 'run_bg'. Provide the name of he pid file you 
 # used in 'run_bg'
 stop_bg 'daemon'
+
+# Intercept each call before executed. Can be used to modify the command, run
+# something before it, or cancel it altogether.
+# Your block receives the command as argument, and should return a command to
+# run or false to stop execution.
+before_run do |command|
+  cmd.gsub /^(rails|rake|cucumber)/, "bin/\\1"
+end
+
+# Intercept each call before it exits. Note this is only useful with `run` and
+# `run_bg` but not with `run!` which exits after execution.
+after_run do |command|
+  puts "Finished #{command}"
+end
 ```
 
 ## About PID files ##
