@@ -6,6 +6,15 @@ name    "Debug Runfile"
 summary "Runfile Exec Example Usage"
 version "0.1.0"
 
+before_run do |command|
+  puts "BEFORE #{command}"
+  command
+end
+
+after_run do |command|
+  puts "AFTER #{command}"
+end
+
 action :one do
   run 'pwd'
 end

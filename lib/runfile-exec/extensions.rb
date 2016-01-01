@@ -16,25 +16,31 @@ module RunfileExec
 
   # Run a command, wait until it is done and continue
   def run(cmd)
+    cmd = @before_run_block.call(cmd) if @before_run_block
     say "!txtgrn!> #{cmd}"
     system cmd
+    @after_run_block.call(cmd) if @after_run_block
   end
   module_function :run
 
   # Run a command, wait until it is done, then exit
   def run!(cmd)
+    cmd = @before_run_block.call(cmd) if @before_run_block
     say "!txtgrn!> #{cmd}"
     exec cmd
+    @after_run_block.call(cmd) if @after_run_block
   end
   module_function :run!
 
   # Run a command in the background, optionally log to a log file and save
   # the process ID in a pid file
   def run_bg(cmd, pid: nil, log: '/dev/null')
+    cmd = @before_run_block.call(cmd) if @before_run_block
     full_cmd = "exec #{cmd} >#{log} 2>&1"
     say "!txtgrn!> #{full_cmd}"
     process = IO.popen "exec #{cmd} >#{log} 2>&1"
     File.write pidfile(pid), process.pid if pid
+    @after_run_block.call(cmd) if @after_run_block
     return process.pid
   end
 
@@ -49,6 +55,16 @@ module RunfileExec
     else
       say "!txtred!PID file not found."
     end
+  end
+
+  # Set a block to be called before each run
+  def before_run(&block)
+    @before_run_block = block
+  end
+
+  # Set a block to be called after each run
+  def after_run(&block)
+    @after_run_block = block
   end
 
   private
