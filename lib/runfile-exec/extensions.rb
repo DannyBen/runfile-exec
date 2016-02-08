@@ -67,8 +67,12 @@ module RunfileExec
 
   private
 
+  def pid_dir
+    defined?(@@pid_dir) ? @@pid_dir : nil
+  end
+
   def pidfile(pid)
-    @@pid_dir ? "#{@@pid_dir}/#{pid}.pid" : "#{pid}.pid"
+    pid_dir ? "#{pid_dir}/#{pid}.pid" : "#{pid}.pid"
   end
 
 end

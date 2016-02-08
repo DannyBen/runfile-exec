@@ -1,4 +1,4 @@
-require_relative "../lib/runfile-exec.rb"
+require_relative "../lib/runfile-exec/extensions"
 
 # RunfileExec.pid_dir = './tmp'
 
