@@ -1,4 +1,5 @@
 require "run-gem-dev"
+require "runfile-exec"
 
 name    "Runfile Exec Gem Utils"
 summary "Utilities for building the Runfile Exec gem"
