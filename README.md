@@ -5,6 +5,13 @@ Runfile Exec
 
 [Runfile](https://github.com/DannyBen/runfile) extensions for executing shell commands.
 
+---
+
+**Deprecation Notice:** This gem is being phased out. It has been merged 
+directly into Runfile so there is no longer a need for you to include it. 
+
+---
+
 ## Install
 
 	$ gem install runfile-exec
